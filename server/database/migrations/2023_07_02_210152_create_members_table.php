@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('members', function (Blueprint $table) {
-            $table->integer('number')->primary();
+            $table->id();
+            $table->integer('number');
             $table->string('name', 32);
             $table->enum('contract', ['regular', 'partner', 'external']);
             $table->string('skill');
