@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('task_id');
             $table->foreignId('projects_id');
             $table->string('task_name');
             $table->date('start_at');
