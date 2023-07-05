@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('assigne', function (Blueprint $table) {
-            $table->bigIncrements('assigne_id');
+            $table->id();
             $table->foreignId('projects_id');
             $table->foreignId('tasks_id');
             $table->foreignId('members_id');
