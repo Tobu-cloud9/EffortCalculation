@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->integer('member_id')->primary();
-            $table->string('name', 32);
+            $table->string('name', 20);
             $table->enum('contract', ['regular', 'partner', 'external']);
-            $table->string('skill');
-            $table->string('tel', 11);
-            $table->string('email');
+            $table->text('skill');
+            $table->string('tel', 20);
+            $table->string('email', 100);
             $table->timestamps();
         });
     }
