@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->bigIncrements('project_id');
-            $table->string('project_name');
+            $table->string('title', 50);
             $table->enum('state', ['done', 'wip', 'todo', 'cancel']);
             $table->date('start_at');
             $table->date('goal_at');
