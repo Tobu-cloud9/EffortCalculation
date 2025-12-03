@@ -36,6 +36,11 @@ class ImageController extends Controller
         $bg = imagecolorallocate($image, $bgColor['r'], $bgColor['g'], $bgColor['b']);
         $fg = imagecolorallocate($image, $textColor['r'], $textColor['g'], $textColor['b']);
 
+        if ($bg === false || $fg === false) {
+            imagedestroy($image);
+            return response('Failed to allocate colors', 500);
+        }
+
         // Fill background
         imagefill($image, 0, 0, $bg);
 
@@ -51,9 +56,13 @@ class ImageController extends Controller
 
         // Output image
         ob_start();
-        imagepng($image);
+        $pngResult = imagepng($image);
         $imageData = ob_get_clean();
         imagedestroy($image);
+
+        if ($pngResult === false || $imageData === false || $imageData === '') {
+            return response('Failed to generate PNG image', 500);
+        }
 
         return response($imageData, 200, [
             'Content-Type' => 'image/png',
