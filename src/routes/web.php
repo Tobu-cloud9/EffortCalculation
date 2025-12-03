@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Image generation routes
+Route::get('/image/generate', [ImageController::class, 'generate'])->name('image.generate');
+Route::get('/image/status', [ImageController::class, 'status'])->name('image.status');
